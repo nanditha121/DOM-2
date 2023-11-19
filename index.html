@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #todoList {
+      list-style: none;
+      padding: 0;
+    }
+
+    .task {
+      margin-bottom: 8px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .task input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    #newTask {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>To-Do List</h2>
+  
+  <ul id="todoList"></ul>
+
+  <div id="newTask">
+    <input type="text" id="taskInput" placeholder="Enter a new task">
+    <button onclick="addTask()">Add Task</button>
+  </div>
+
+  <script>
+    function addTask() {
+      const taskInput = document.getElementById('taskInput');
+      const taskText = taskInput.value.trim();
+
+      if (taskText !== '') {
+        const todoList = document.getElementById('todoList');
+
+        // Create a new task element
+        const newTask = document.createElement('li');
+        newTask.className = 'task';
+
+        // Create checkbox and label elements
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+
+        const label = document.createElement('label');
+        label.textContent = taskText;
+
+        // Append checkbox and label to the task element
+        newTask.appendChild(checkbox);
+        newTask.appendChild(label);
+
+        // Add the new task to the list using different methods
+        // Uncomment one of the following lines based on your preference
+
+        // Append method: Adds the new task to the end of the list
+        // todoList.appendChild(newTask);
+
+        // Prepend method: Adds the new task to the beginning of the list
+        // todoList.prepend(newTask);
+
+        // InsertBefore method: Adds the new task before the first child of the list (similar to prepend)
+        todoList.insertBefore(newTask, todoList.firstChild);
+
+        // Clear the input field
+        taskInput.value = '';
+      }
+    }
+  </script>
+
+</body>
+</html>
